@@ -1,0 +1,94 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner in = new Scanner(System.in);
+		/*
+		 * Faça um programa para o cálculo de uma folha de pagamento, sabendo que os
+		 * descontos são do Imposto de Renda, que depende do salário bruto (conforme
+		 * tabela abaixo) e 3% para o Sindicato e que o FGTS corresponde a 11% do
+		 * Salário Bruto, mas não é descontado (é a empresa que deposita). O Salário
+		 * Líquido corresponde ao Salário Bruto menos os descontos. O programa deverá
+		 * pedir ao usuário o valor da sua hora e a quantidade de horas trabalhadas no
+		 * mês. Desconto do IR:
+		 */
+		double salarioLiquido = 0.0;
+		double totalDesconto = 0.0;
+		double inss = 0.0;
+		double ir = 0.0;
+		double fgts = 0.0;
+		double salarioBruto = 0.0;
+		double valorHora = 0.0;
+		int qtidadeHora = 0;
+		System.out.println();
+		System.out.println(
+				"<<-----------------------Programa para cáculo de folha de pagamento----------------------->>");
+		System.out.println();
+		System.out.print("Digite o valor da hora trabalha: ");
+		valorHora = in.nextDouble();
+		System.out.print("Digite a quantidade de horas trabalhadas: ");
+		qtidadeHora = in.nextInt();
+
+		salarioBruto = valorHora * qtidadeHora;
+		
+		
+		
+		if (salarioBruto < 900) {
+			System.out.println("Isento de impostos.");
+		} else if (salarioBruto <= 1500) {
+			System.out.println("Você terá um desconto de 5% do IR.");
+			
+			inss = (salarioBruto * 10) / 100;
+			fgts = (salarioBruto * 11) / 100;
+			ir = (salarioBruto * 5) / 100;		
+			totalDesconto = ir + inss;
+			salarioLiquido = salarioBruto - totalDesconto;
+			salarioBruto -= ir;
+			
+		}/* else if (salarioBruto <= 2500) {
+			System.out.println("Você terá um desconto de 10% do IR.");
+			ir = (salarioBruto * 10) / 100;
+			salarioBruto -= ir;
+			inss = (salarioBruto * 10) / 100;
+			fgts = (salarioBruto * 11) / 100;
+			totalDesconto = ir + inss + fgts;
+			salarioLiquido = salarioBruto - totalDesconto;
+		} else {
+			System.out.println("Você terá um desconto de 20% do IR.");
+			
+			inss = (salarioBruto * 10) / 100;
+			fgts = (salarioBruto * 11) / 100;
+			ir = (salarioBruto * 20) / 100;
+			salarioBruto -= ir;
+			totalDesconto = ir + inss + fgts;
+			salarioLiquido = salarioBruto - totalDesconto;
+		}*/
+		System.out.println();
+		
+		
+		
+		
+		System.out.printf("Salário bruto : R$ %.2f%n", salarioBruto);
+		System.out.println();
+		System.out.printf("R$ %.2f%n", ir);
+		System.out.println("                                 (-) IR (5%)");
+		System.out.printf("R$ %.2f%n", inss);
+		System.out.println("                                 (-) INSS (10%)");
+		System.out.printf("R$ %.2f%n", fgts);
+		System.out.println("                                 (-) FGTS (10%)");
+		System.out.println("                                 Total de descontos ");
+		System.out.printf("R$ %.2f%n", totalDesconto);
+		System.out.println("                                 Salário Líquido ");
+		System.out.println(salarioLiquido);
+
+		
+
+		in.close();
+	}
+
+}
